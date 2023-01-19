@@ -1,23 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { tambah, kurang } from './Redux/Action/ThisIsAction';
 
 function App() {
+
+  const showData = useSelector((state) => state.ThisIsReducer)
+  const dispatch = useDispatch()
+
+  console.log(showData.value);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>{showData.value}</div>
+      <div>
+        <button onClick={() => dispatch(tambah())}>
+          Add
+        </button>
+        <button onClick={() => dispatch(kurang())}>
+          Min
+        </button>
+      </div>
     </div>
   );
 }
